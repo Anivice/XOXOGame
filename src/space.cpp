@@ -98,10 +98,6 @@ void Space::print() const
 
 signed Space::win_within_3x3(const int x, const int y)
 {
-    if (!(x >= 0 && x < width - 3 && y >= 0 && y < height - 3)) {
-        throw std::invalid_argument("Invalid starting point");
-    }
-
     char array[3][3];
     // Precompute starting iterator to avoid repeated calculations.
     auto row_start = desk.begin() + y;
@@ -131,6 +127,10 @@ signed Space::win_within_3x3(const int x, const int y)
 
 signed Space::check_win()
 {
+    if (width == 3 && height == 3) {
+        return win_within_3x3(0, 0);
+    }
+
     // Precompute the maximum starting positions.
     const int max_x = width - 3;
     const int max_y = height - 3;

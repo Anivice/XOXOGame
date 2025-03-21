@@ -24,4 +24,10 @@ add_executable(draft_log unit_drafts/draft_log.cpp)
 target_link_libraries(draft_log log)
 
 add_executable(draft_space unit_drafts/draft_space.cpp)
-target_link_libraries(draft_space space_and_objects)
+target_link_libraries(draft_space PRIVATE space_and_objects)
+
+add_executable(trainer src/trainer.cpp)
+target_link_libraries(trainer PRIVATE space_and_objects log)
+
+add_executable(play src/play.cpp)
+target_link_libraries(play PRIVATE space_and_objects)
